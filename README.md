@@ -1,10 +1,11 @@
 ---
 title: Live Pandoc (bis)
+
 ...
 
 # Live Pandoc (bis)
 
-A simple nodejs script (from ClojureScript) to run pandoc whenever the input
+A simple `node-js` script (from ClojureScript) to run pandoc whenever the input
 file is saved.
 
 # Why?
@@ -15,8 +16,8 @@ myself with my new `ClojureScript` superpower.
 
 # Requirement
 
-You should have a `node-js` installed and under your path. Tested against
-version `12.13.0`.
+You should have a `node-js` server installed and under your path. Tested
+against version `12.13.0`.
 
 # How To
 
