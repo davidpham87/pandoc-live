@@ -1,0 +1,17 @@
+{
+  "name": "live-pandoc",
+  "version": "1.0.0",
+  "description": "Simple reloader of pandoc for live coding",
+  "keywords": [
+    "pandoc",
+    "live-coding"
+  ],
+  "author": "David",
+  "license": "ISC",
+  "devDependencies": {
+    "shadow-cljs": "^2.8.67"
+  },
+  "dependencies": {
+    "node-watch": "^0.6.3"
+  }
+}

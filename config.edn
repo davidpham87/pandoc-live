@@ -1,0 +1,7 @@
+{:input "example.md"
+ :s true
+ :number-sections true
+ :toc true
+ :katex true
+ ;; :template "minidoc-template.html"
+ :o "example.pdf"}

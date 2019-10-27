@@ -1,0 +1,9 @@
+;; shadow-cljs configuration
+{:deps {:aliases [:cljs]}
+
+ :builds
+ {:app
+  {:target :node-script
+   :output-to "target/pandoc-watcher.js"
+   :main pandoc.watcher.core/main
+   :devtools {:after-load pandoc.watcher.core/reload}}}}
