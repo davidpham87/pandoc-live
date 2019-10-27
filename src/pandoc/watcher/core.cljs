@@ -1,11 +1,10 @@
 (ns pandoc.watcher.core
   (:require
-   ["fs" :as fs]
    ["child_process" :as child-process]
+   ["node-watch" :default watch]
    [clojure.reader :refer (read-string)]
    [clojure.string :as str]
    [cljs-node-io.core :as io :refer [slurp]]))
-
 
 (defonce config (atom nil))
 
@@ -15,12 +14,10 @@
     (catch js/Error e (println e))))
 
 (defn watch-file! [filename on-change]
-  (fs/watch
+  (watch
    filename
    (fn [e f]
-     (println "Detecting change on: " f )
-     (println "Event: " e)
-     (println "filename:" filename)
+     (println "Detecting " e " on: " f ", while watching " filename)
      (try
        (on-change @config)
        (catch js/Error e (println e))))))
@@ -33,13 +30,26 @@
     (when (:input config)
       (let [cmd (str "pandoc " (:input config) " " (str/join " " opts))]
         (println cmd)
-        (child-process/exec cmd)
+        (child-process/exec
+         cmd
+         (fn [e std-out std-err]
+           (when e
+             (println "Error: " e))
+           (when (seq std-out)
+             (println "Std-out: " std-out))
+           (when (seq std-err)
+             (println "Std-err: " std-err))))
         [:success]))))
 
 (defn main []
-  (reset! config (read-config))
-  (watch-file! "config.edn" (fn [_] (reset! config (read-config))))
-  (watch-file! (:input @config) (fn [_] (pandoc-compile! @config))))
+  (when-not @config
+    (println "Initializing config.")
+    (reset! config (read-config)))
+  (when @config
+    (println "Creating watchers.")
+    (watch-file! "config.edn" (fn [_] (reset! config (read-config))))
+    (watch-file! (clj->js [(:input @config) "config.edn"])
+                 (fn [_] (pandoc-compile! @config)))))
 
 (defn reload []
   (println "reload this"))

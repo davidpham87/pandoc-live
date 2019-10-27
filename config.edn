@@ -1,7 +1,8 @@
-{:input "example.md"
+{:input "README.md"
  :number-sections true
  :s true
  :toc true
  :katex true
- ;; :template "minidoc-template.html"
- :o "example.pdf"}
+ :template "minidoc-template.html" ;; comment the line if you target "*.pdf"
+ :highlight "pygments"
+ :o "README.html"}

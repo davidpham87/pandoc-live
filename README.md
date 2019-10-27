@@ -1,3 +1,7 @@
+---
+title: Live Pandoc (bis)
+...
+
 # Live Pandoc (bis)
 
 A simple nodejs script (from ClojureScript) to run pandoc whenever the input
@@ -12,6 +16,7 @@ version `12.13.0`.
 
 Download the `config.edn` and `target/pandoc-watcher.js` file under the same
 folder.
+
 
 Configurations of pandoc parameters can be edited in the `config.edn` file. The
 file describe a map of pandoc options pairs. The pandoc argument starts with
@@ -41,3 +46,30 @@ node pandoc-watcher.js
 
 Edit your input file and the server runs the pandoc command according the
 `config.edn`.
+
+# Note
+
+If your configuration is quite convoluted, you can test and watch the print
+output in your terminal.
+
+# How to Develop
+
+If you want to extend or debug the script, the code is written in ClojureScript
+using `node-watch` as dependency. First download
+[Clojure](https://clojure.org/guides/getting_started) and install it. Then
+
+``` shell
+npm install --save # download the javascript dependency
+shadow-cljs start # avoid to restart the server all the time,
+# make sure is on your paths
+shadow-cljs watch app # develop
+
+# In a different terminal
+node target/pandoc-watcher.js
+
+# You can use a repl from that point on, you might want to rewrite
+# the reload function.
+
+# relase
+shadow-cljs release app
+```
