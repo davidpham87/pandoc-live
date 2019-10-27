@@ -9,17 +9,16 @@
 (defonce config (atom nil))
 
 (defn read-config []
-  (try
-    (read-string (slurp "config.edn"))
-    (catch js/Error e (println e))))
+  (try (read-string (slurp "config.edn"))
+       (catch js/Error e (println e))))
 
 (defn watch-file! [filename on-change]
-  (watch filename
-         (fn [e f]
-           (println "Detecting " e " on: " f ", while watching " filename)
-           (try
-             (on-change @config)
-             (catch js/Error e (println e))))))
+  (watch
+   filename
+   (fn [e f]
+     (println "Detecting " e " on: " f ", while watching " filename)
+     (try (on-change @config)
+          (catch js/Error e (println e))))))
 
 (defn ->pandoc-cli-args
   "Take an argument k and a value v and transform them to standard command line
@@ -34,15 +33,11 @@
     (when (:input config)
       (let [cmd (str "pandoc " (:input config) " " (str/join " " opts))]
         (println cmd)
-        (child-process/exec
-         cmd
-         (fn [e std-out std-err]
-           (when e
-             (println "Error: " e))
-           (when (seq std-out)
-             (println "Std-out: " std-out))
-           (when (seq std-err)
-             (println "Std-err: " std-err))))
+        (child-process/exec cmd
+                            (fn [e std-out std-err]
+                              (when e (println "Error: " e))
+                              (when (seq std-out) (println "Std-out: " std-out))
+                              (when (seq std-err) (println "Std-err: " std-err))))
         [:success]))))
 
 (defn main []
