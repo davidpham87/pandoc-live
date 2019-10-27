@@ -14,19 +14,23 @@
     (catch js/Error e (println e))))
 
 (defn watch-file! [filename on-change]
-  (watch
-   filename
-   (fn [e f]
-     (println "Detecting " e " on: " f ", while watching " filename)
-     (try
-       (on-change @config)
-       (catch js/Error e (println e))))))
+  (watch filename
+         (fn [e f]
+           (println "Detecting " e " on: " f ", while watching " filename)
+           (try
+             (on-change @config)
+             (catch js/Error e (println e))))))
+
+(defn ->pandoc-cli-args
+  "Take an argument k and a value v and transform them to standard command line
+  arguments. Single character having single prefixed dash (-), two otherwise. "
+  [k v]
+  (let [arg (name k)]
+    (str (if (= (count arg) 1) "-" "--") arg " "
+         (when-not (or (true? v) (empty? v)) v))))
 
 (defn pandoc-compile! [config]
-  (let [opts (for [[k v] (dissoc config :input)
-                   :when v]
-               (str "-"  (when (> (count (name k)) 1) "-") (name k) " "
-                    (when-not (or (true? v) (empty? v)) v)))]
+  (let [opts (for [[k v] (dissoc config :input) :when v] (->pandoc-cli-args k v))]
     (when (:input config)
       (let [cmd (str "pandoc " (:input config) " " (str/join " " opts))]
         (println cmd)

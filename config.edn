@@ -6,6 +6,6 @@
  ;; :toc is translated to --toc
  :toc true
  :katex true
- :template "minidoc-template.html" ;; comment the line if you target "*.pdf"
+ ;; :template "minidoc-template.html" ;; comment the line if you target "*.pdf"
  :highlight "pygments"
- :o "README.html"}
+ :o "README.pdf"}
