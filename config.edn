@@ -1,6 +1,6 @@
 {:input "example.md"
- :s true
  :number-sections true
+ :s true
  :toc true
  :katex true
  ;; :template "minidoc-template.html"
