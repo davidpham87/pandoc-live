@@ -1,6 +1,9 @@
+;; :input is the input file
 {:input "README.md"
  :number-sections true
+ ;; :s will be translated to -s
  :s true
+ ;; :toc is translated to --toc
  :toc true
  :katex true
  :template "minidoc-template.html" ;; comment the line if you target "*.pdf"

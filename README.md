@@ -7,6 +7,12 @@ title: Live Pandoc (bis)
 A simple nodejs script (from ClojureScript) to run pandoc whenever the input
 file is saved.
 
+# Why?
+
+The project [pandoc-live project](https://github.com/ocharles/pandoc-live)
+already exists, but I never managed to run it, so I decided to try to write one
+myself with my new `ClojureScript` superpower.
+
 # Requirement
 
 You should have a `node-js` installed and under your path. Tested against
@@ -24,16 +30,17 @@ file describe a map of pandoc options pairs. The pandoc argument starts with
 `config.edn`.
 
 ``` clojure
- ;; :input is the input file
-{:input "example.md"
+;; :input is the input file
+ {:input "README.md"
+ :number-sections true
  ;; :s will be translated to -s
  :s true
  ;; :toc is translated to --toc
  :toc true
- :number-sections true
  :katex true
- ;; :template "minidoc-template.html"
- :o "example.pdf"}
+ :template "minidoc-template.html" ;; comment the line if you target "*.pdf"
+ :highlight "pygments"
+ :o "README.html"}
 ```
 
 ## Start the server
@@ -73,3 +80,7 @@ node target/pandoc-watcher.js
 # relase
 shadow-cljs release app
 ```
+
+# TODO
+
+It would be nice to add a websocket support for live reloading `html` output.
