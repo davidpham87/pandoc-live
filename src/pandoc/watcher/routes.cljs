@@ -4,15 +4,19 @@
    [macchiato.middleware.defaults :as defaults]
    [macchiato.util.response       :as mur]
    [reitit.ring                   :as ring]
+   [cljs-node-io.core             :as io :refer [slurp]]
    [hiccups.runtime]))
 
-
 (defn home [_ res _]
-  (-> (html
-       [:h2 "Hello World!"]
-       [:p "Your user-agent is"])
+  (-> (slurp "public/index.html")
       (mur/ok)
       (mur/content-type "text/html")
+      (res)))
+
+(defn get-main-js [_ res _]
+  (-> (slurp "js/main.js")
+      (mur/ok)
+      (mur/content-type "application/json")
       (res)))
 
 (defn test-route [req res _]
@@ -37,6 +41,7 @@
 (def routes
   [""
    ["/" {:get home}]
+   ["/js/main.js" {:get get-main-js}]
    ["/test" {:get test-route}]])
 
 (def router (ring/router routes))

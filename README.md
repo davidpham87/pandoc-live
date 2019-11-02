@@ -8,6 +8,7 @@ title: Live Pandoc (bis)
 A simple `node-js` script (from ClojureScript) to run pandoc whenever the input
 file is saved.
 
+
 ## Why?
 
 The project [pandoc-live project](https://github.com/ocharles/pandoc-live)
@@ -43,7 +44,6 @@ file describe a map of pandoc options pairs. The pandoc argument starts with
  :o "README.html"}
 ```
 
-
 ## Start the server
 
 Launch the nodejs server
@@ -59,23 +59,21 @@ Edit your input file and the server runs the pandoc command according the
 
 It is always nice to write markdown and have automatic compilation to html. By
 default, the scripts will compile your input file to
-_public/index-markdown.html_ whenver you change the input file.
-
-First, start the server:
+_public/index-markdown.html_ whenver you change the input file. First, start
+the server:
 
 ``` shell
 node pandoc-watcher.js
 ```
 
-Then open _public/index.html_ in any browser supporting websockets (any modern
-version of Chromium or Firefox satisfies this requirement) and start to edit
-your file and save it, you should see your browser showing the new edits.
+Then open [http://localhost:3000](http://localhost:3000) in a browser
+supporting websockets (i.e. any modern version of Chromium or Firefox), edit
+and save your file, you should then see your browser showing the new edits.
 
 ## Note: Config testing
 
 If your configuration is quite convoluted, you can test and watch the print
 output in your terminal.
-
 
 # How to Develop
 
@@ -90,7 +88,7 @@ shadow-cljs start # avoid to restart the server all the time,
 shadow-cljs watch app # develop
 
 # In a different terminal
-node pandoc-watcher.js
+node target/pandoc-watcher.js
 
 # You can use a repl from that point on, you might want to rewrite
 # the reload function.

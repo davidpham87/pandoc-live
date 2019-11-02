@@ -9,3 +9,7 @@ createServer
 listen
 Server
 address
+
+find_or_create_token
+randomBytes
+writeHead

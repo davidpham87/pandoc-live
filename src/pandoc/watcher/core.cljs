@@ -7,9 +7,7 @@
    [clojure.string        :as str]
    [macchiato.server      :as http]
    [mount.core            :refer (defstate)]
-   [pandoc.watcher.routes :refer (ring-handler)]
-   [pandoc.watcher.websockets]
-   [cljs-bean.core :refer (bean ->clj ->js)]))
+   [pandoc.watcher.routes :refer (ring-handler)]))
 
 (defonce config (atom nil))
 
