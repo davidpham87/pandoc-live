@@ -90,7 +90,7 @@ shadow-cljs start # avoid to restart the server all the time,
 shadow-cljs watch app # develop
 
 # In a different terminal
-node target/pandoc-watcher.js
+node pandoc-watcher.js
 
 # You can use a repl from that point on, you might want to rewrite
 # the reload function.
