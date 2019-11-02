@@ -8,13 +8,13 @@ title: Live Pandoc (bis)
 A simple `node-js` script (from ClojureScript) to run pandoc whenever the input
 file is saved.
 
-# Why?
+## Why?
 
 The project [pandoc-live project](https://github.com/ocharles/pandoc-live)
 already exists, but I never managed to run it, so I decided to try to write one
 myself with my new `ClojureScript` superpower.
 
-# Requirement
+## Requirement
 
 You should have a `node-js` server installed and under your path. Tested
 against version `12.13.0`.
@@ -75,6 +75,7 @@ your file and save it, you should see your browser showing the new edits.
 
 If your configuration is quite convoluted, you can test and watch the print
 output in your terminal.
+
 
 # How to Develop
 
