@@ -18,7 +18,7 @@ myself with my new `ClojureScript` superpower.
 ## Requirement
 
 You should have a `node-js` server installed and under your path. Tested
-against version `12.13.0`.
+against version `12.13.0` and `pandoc` accessible under your `PATH`.
 
 # How To
 
