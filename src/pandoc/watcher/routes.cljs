@@ -14,7 +14,7 @@
       (res)))
 
 (defn get-main-js [_ res _]
-  (-> (slurp "js/main.js")
+  (-> (slurp "public/js/main.js")
       (mur/ok)
       (mur/content-type "application/json")
       (res)))

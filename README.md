@@ -20,7 +20,7 @@ myself with my new `ClojureScript` superpower.
 You should have a `node-js` server installed and under your path. Tested
 against version `12.13.0` and `pandoc` accessible under your `PATH`.
 
-# How To
+# Quick Start
 
 Download the `config.edn` and `pandoc-watcher.js` file under the same
 folder.

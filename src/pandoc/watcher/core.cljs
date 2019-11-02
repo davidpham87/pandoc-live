@@ -11,13 +11,14 @@
 
 (defonce config (atom nil))
 
-(def live-config-http {:host "localhost"
-                       :port 3000})
 
-(def live-config {:output "public/index-pandoc.html"
-                  :highlight "pygments"
-                  :s true
-                  :katex true})
+;; Arguments for the live editing feature.
+(def live-config-http {:host "localhost" :port 3000})
+
+(def live-config {:output "public/index-pandoc.html" :highlight "pygments"
+                  :s true :katex true})
+
+;; Reloading functions
 
 (defn read-config []
   (try (read-string (slurp "config.edn"))
@@ -42,7 +43,6 @@
   :stop (close-watchers @watchers))
 
 ;; compile pandoc according to config.edn
-
 (defn ->pandoc-cli-args
   "Take an argument k and a value v and transform them to standard command line
   arguments. Single character having single prefixed dash (-), two otherwise. "
@@ -67,7 +67,8 @@
   (let [data (try (slurp file) (catch js/Error e ""))]
     (.send ws data)))
 
-;; fetch ui with live document
+;; fetch ui with live document and websockets
+
 (def local-ws (atom nil))
 (defn ws-handler [{:keys [websocket] :as ws-req}]
   (.on websocket "message"
@@ -86,6 +87,8 @@
                  :on-success #(.log js/console "websocket start on" host ":" port)})]
     (http/start-ws server ws-handler)
     server))
+
+;; development utilities
 
 (defn stop-server [server]
   (println server)
