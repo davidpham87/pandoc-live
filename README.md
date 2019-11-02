@@ -21,9 +21,8 @@ against version `12.13.0`.
 
 # How To
 
-Download the `config.edn` and `target/pandoc-watcher.js` file under the same
+Download the `config.edn` and `pandoc-watcher.js` file under the same
 folder.
-
 
 Configurations of pandoc parameters can be edited in the `config.edn` file. The
 file describe a map of pandoc options pairs. The pandoc argument starts with
@@ -44,6 +43,7 @@ file describe a map of pandoc options pairs. The pandoc argument starts with
  :o "README.html"}
 ```
 
+
 ## Start the server
 
 Launch the nodejs server
@@ -55,7 +55,23 @@ node pandoc-watcher.js
 Edit your input file and the server runs the pandoc command according the
 `config.edn`.
 
-# Note
+## Live markdown to HTML
+
+It is always nice to write markdown and have automatic compilation to html. By
+default, the scripts will compile your input file to
+_public/index-markdown.html_ whenver you change the input file.
+
+First, start the server:
+
+``` shell
+node pandoc-watcher.js
+```
+
+Then open _public/index.html_ in any browser supporting websockets (any modern
+version of Chromium or Firefox satisfies this requirement) and start to edit
+your file and save it, you should see your browser showing the new edits.
+
+## Note: Config testing
 
 If your configuration is quite convoluted, you can test and watch the print
 output in your terminal.
@@ -81,7 +97,3 @@ node target/pandoc-watcher.js
 # relase
 shadow-cljs release app
 ```
-
-# TODO
-
-It would be nice to add a websocket support for live reloading `html` output.

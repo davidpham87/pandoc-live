@@ -9,9 +9,20 @@
   "author": "David",
   "license": "ISC",
   "devDependencies": {
-    "shadow-cljs": "^2.8.67"
+    "shadow-cljs": "^2.8.68"
   },
   "dependencies": {
-    "node-watch": "^0.6.3"
+    "concat-stream": "^2.0.0",
+    "cookies": "^0.8.0",
+    "etag": "^1.8.1",
+    "multiparty": "^4.2.1",
+    "node-watch": "^0.6.3",
+    "qs": "^6.9.0",
+    "random-bytes": "^1.0.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "simple-encryptor": "^3.0.0",
+    "ws": "^7.2.0",
+    "xregexp": "^4.2.4"
   }
 }
